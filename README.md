@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -10,4 +10,4 @@ Currently, two official plugins are available:
 =======
 # SpellSips
 A magical cocktail recipe website with detailed descriptions, photos, and mixing instructions
->>>>>>> 7488956f3cd39cab46d49a8aba8e43ca5d4a3368
+
