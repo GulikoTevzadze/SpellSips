@@ -9,10 +9,13 @@ body
   font-family: sans-serif
   line-height: 1.5
   background-color: #e76cd7
+  overflow: hidden
 a
   text-decoration: none
   color: inherit
-
+.fa-solid
+  font-size: 45px
+  color: white
 ul, ol
   list-style: none
 
@@ -32,18 +35,32 @@ img
   max-width: 100%
   height: auto
   display: block
-.header
-  padding: 30px 80px
-  width: 100%
+
+body
+  margin: 0
+  font-family: Arial, sans-serif
+  overflow: hidden
+.logo
+  font-family: Lavishly Yours
+  font-size: 75px
+  color: white
+  transition: 2s
+.black
+  color: black
+   transition: 2s
+.navigation
+  padding: 20px 30px
   display: flex
   justify-content: space-between
   align-items: center
-  .header-logo
-    font-family: Lavishly Yours
-    color: white
-    font-size: 100px
-    letter-spacing: 4px
-
+  &-burger 
+    transform: translate(0, -100px)
+  nav
+    transform: translateX(-200%)
+    transition: 2s
+    &.active
+      transform: translateX(0)
+      transition: 2s
 .footer
   flex: 0 0 auto
   display: flex
