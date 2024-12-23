@@ -7,7 +7,7 @@ export default function Navigation() {
   };
   return (<>
     <h1 className={`${isMenuOpen ? `black` : `white`} logo`}>Spell Sips</h1>
-    <div className='navigation'>
+    <div className='navigation'> 
       <nav className={`${isMenuOpen ? `active` : ``}`}>
         <ul>
           <li>
