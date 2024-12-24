@@ -5,33 +5,43 @@ export default function Navigation() {
   const toggleMenuHandler = () => {
     setIsMenuOpen((prev) => !prev);
   };
-  return (<>
-    <h1 className={`${isMenuOpen ? `black` : `white`} logo`}>Spell Sips</h1>
-    <div className='navigation'> 
-      <nav className={`${isMenuOpen ? `active` : ``}`}>
-        <ul>
-          <li>
-            <Link to="/products" onClick={toggleMenuHandler}>
-              All Products
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onClick={toggleMenuHandler}>
-              HOME
-            </Link>
-          </li>
-        </ul>
-      </nav>
+  return (< div className='navigation-menu'>
+    <div className='navigation'>
+      <h1 className={`${isMenuOpen ? `black` : `white`} logo`}>Spell Sips</h1>
       {!isMenuOpen ? (
-        <button className="navigation-burger " onClick={toggleMenuHandler}>
+        <button className="burger " onClick={toggleMenuHandler}>
           <i className="fa-solid fa-bars"></i>
         </button>
       ) : (
-        <button className="navigation-burger " onClick={toggleMenuHandler}>
+        <button className="burger " onClick={toggleMenuHandler}>
           <i className="fa-solid fa-x"></i>
         </button>
       )}
     </div>
-  </>
+    <nav className={`${isMenuOpen ? `active` : ``} `}>
+      <ul>
+        <li>
+          <Link className='nav-link' to="/products" onClick={toggleMenuHandler}>
+            All Products
+          </Link>
+        </li>
+        <li>
+          <Link className='nav-link' to="/" onClick={toggleMenuHandler}>
+            Home
+          </Link>
+        </li>
+      </ul>
+      <div className='products-block'>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        <Link className='color' to="/" onClick={toggleMenuHandler}></Link>
+        
+      </div>
+    </nav>
+
+  </ div >
   );
 }
