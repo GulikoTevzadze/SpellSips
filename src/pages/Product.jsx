@@ -1,3 +1,7 @@
+import ProductSwiper from "../section/ProductSwiper";
+
 export default function Product() {
-    return <p>Product page</p>
+    return (
+      <ProductSwiper />
+    )
 }

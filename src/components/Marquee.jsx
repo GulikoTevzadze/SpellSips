@@ -1,37 +1,19 @@
-export default function Marquee({backgroundColor}) {
-  return (<>
-    <div className="marquee" >
-      <div className="marquee-content">
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
+export default function Marquee({ title, }) {
+  const wordsCount = Math.round(100 / title.length)
+
+  const renderContent = (count, className = "") =>
+    Array.from({ length: count }, (_, i) => (
+      <div key={i} className={`marquee-content ${className}`}>
+        {Array.from({ length: wordsCount }, (_, j) => (
+          <p key={j}>{`${title } ` } &nbsp;</p>
+        ))}
       </div>
-      <div className="marquee-content">
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-        <p>Spell Sips Spell </p>
-      </div>
-    </div>
-    <div className="marquee" >
-      <div className="marquee-content white">
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-      </div>
-      <div className="marquee-content white">
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-        <p> Sips Spell Sips</p>
-      </div>
-    </div>
-  </>
+    ));
+
+  return (
+    <>
+      <div className="marquee">{renderContent(2)}</div>
+      <div className="marquee">{renderContent(2, "white")}</div>
+    </>
   );
 }

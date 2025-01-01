@@ -9,7 +9,7 @@ export default function Card({ to, onClick, backgroundColor, img, title }) {
       style={{ backgroundColor }}
     >
       <div className="marquee-bg">
-        <Marquee />
+        <Marquee  title={title}/>
       </div>
       <img className="cards-img" src={img} alt={title} />
     </Link>

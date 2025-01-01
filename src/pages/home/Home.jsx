@@ -1,4 +1,5 @@
 import ScrollDownButton from "../../components/ScrollDownButton";
+import HomeSwiper from "../../section/HomeSwiper";
 import HeroSection from "./HeroSection";
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
     <>
       <HeroSection />
       <ScrollDownButton />
+      <HomeSwiper />
     </>
-
   )
 }
