@@ -89,9 +89,36 @@ nav
       margin-bottom: 15px
       .nav-link
         color: black
-        font-family: Merriweather, serif
-        font-weight: 300
+        font-family: Playfair Display
+        font-weight: 600
         font-size: 50px
+        transition: all .5s ease
+      .nav-link:hover
+        -webkit-text-stroke: 2px black
+        color: #fff
+    li::after
+      content: ""
+      background-image: url('./star-3.svg')
+      opacity: 0
+      display: block
+      position: relative
+      width: 50px
+      height: 50px
+      top: -60px
+      left: 0
+      transition: all .5s ease
+    li:nth-child(1)::after
+      left: 310px
+    li:nth-child(2)::after
+      left: 170px
+    li:nth-child(3)::after
+      left: 200px
+      top: -62px
+    li:hover::after
+      opacity: 1
+      -webkit-text-stroke: 2px black
+      color: #fff
+
   .products-block
     width: 1180px
     display: flex
@@ -128,6 +155,7 @@ nav
 .marquee-bg
   z-index: 1
   width: 100%
+  height: 100%
   opacity: 0
   position: absolute
   transition: all .5s ease
@@ -261,6 +289,7 @@ nav
   padding: 30px 80px
   background-color: grey
   z-index: 3
+  margin-top: 150px
 
 .scroll-down-container
   margin: auto
@@ -369,6 +398,7 @@ nav
 .swiper
   margin-left: auto
   margin-right: auto
+  overflow: auto
 .swiper-slide p,
 .swiper-slide ul
   transform: translateY(150px)
@@ -384,7 +414,6 @@ nav
 .swiper-slide-active p,
 .swiper-slide-active ul
   opacity: 1
-
 .social-media
   display: flex
   justify-content: flex-start
@@ -404,19 +433,107 @@ nav
     margin-right: 30px
   .fa-brands
     font-size: 44px
-.myProductSwiper
-  position: relative
+
+.swiper-wrapper-custom
   overflow: visible
+  margin-left: auto
+  width: 90%
+  .swiper
+    margin-top: 150px
+    overflow: visible
+    &-pagination
+      opacity: 0
+    .swiper-slide
+      width: 350px
+      border-radius: 5%
+      height: 670px
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      .marquee-bg
+        opacity: 1
+        z-index: -1
+        top: 10%
+      .marquee-bg  p
+        font-size: 150px
+      img
+        width: 70%
+        height: 70%
+      &-active img
+        transform: none
+      p
+        transform: translateY(0px)
+        opacity: 1
+        text-transform: uppercase
+      ul
+        transform: translateY(0px)
+        opacity: 1
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        padding: 10px
+        li
+          display: flex
+          margin-left: 10px
+          text-transform: uppercase
+
+    .swiper-scrollbar
+      width: 60%
+      bottom: -65px
+      left: 10%
+    .swiper-button-prev,
+    .swiper-button-next
+      border: 1px solid #6e6d6dbd
+      width: 60px !important
+      height: 60px !important
+      top: 108%
+    .swiper-button-prev::after,
+    .swiper-button-next::after
+      width: 15px !important
+      --swiper-navigation-size: 22px
+      color: #6e6d6dbd
+    .swiper-button-next::after
+      position: relative
+      left: 3px
+    .swiper-button-prev:hover::after,
+    .swiper-button-next:hover::after
+      color: #fff
+    .swiper-button-prev
+      left: unset
+      right: 215px
+    .swiper-button-next
+      right: 130px
+.form
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
   height: 80vh
-  margin-bottom: 250px
-  .swiper-pagination-bullet
-    opacity: 0
-  .swiper-horizontal > .swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal
-    bottom: -20px
-    opacity: 1
-    z-index: 51
-    color: black
-  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal
-    bottom: -20px
-    opacity: 1
-    z-index: 51
+  gap: 20px
+  width: 100%
+  &-row
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    gap: 20px
+  &-group
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    gap: 10px
+
+  &-input
+    padding: 10px
+    border-radius: 20px
+    width: 400px
+    height: 65px
+
+  &-textarea
+    height: 100px
+    border-radius: 20px
+    width: 820px
+  &-button
+    transform: skewY(10deg)

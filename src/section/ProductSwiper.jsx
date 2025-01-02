@@ -4,32 +4,35 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
-import { Pagination, Navigation, Scrollbar, A11y} from 'swiper/modules';
+import { Pagination, Navigation, Scrollbar, A11y } from 'swiper/modules';
 import { cocktails } from '../data/dummyData';
-export  default function ProductSwiper() {
-return (
-  <Swiper
-  modules={[Navigation, Pagination, Scrollbar, A11y]}
-  spaceBetween={50}
-  slidesPerView={4}
-  navigation
-  pagination={{ clickable: true }}
-  scrollbar={{ draggable: true }}
-  className="myProductSwiper"
->
-  {cocktails.map((cocktail, index) => (
+import Marquee from '../components/Marquee';
+export default function ProductSwiper() {
+  return (
+    <div className='swiper-wrapper-custom'>
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={3.5}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        className="myProductSwiper"
+      >
+        {cocktails.map((cocktail, index) => (
           <SwiperSlide
             key={index}
             style={{
-              height: '1100px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: cocktail.bgColor
+
+              backgroundColor: cocktail.bgColor,
             }}
           >
-             <p style={{ fontSize: '18px', fontWeight: 'bold' }}>{cocktail.title}</p>
+            <div className='marquee-bg'>
+              <Marquee title={cocktail.title} />
+            </div>
+
+
+            <p style={{ fontSize: '32px', fontWeight: 'bold' }}>{cocktail.title}</p>
             <ul>
               {Object.entries(cocktail.ingredients).map(([key, value]) => (
                 <li key={key}>
@@ -41,11 +44,12 @@ return (
               src={cocktail.img}
               alt={cocktail.title}
             />
-           
+
           </SwiperSlide>
         ))}
-  ...
-</Swiper>
-)
+      </Swiper>
+    </div>
+
+  )
 
 }

@@ -36,6 +36,12 @@ export default function Navigation() {
               Home
             </Link>
           </li>
+          <li>
+            
+            <Link className='nav-link' to="/contact" onClick={toggleMenuHandler}>
+              Contact
+            </Link>
+          </li>
         </ul>
         <div className='social-media'>
           <SocialLink color={'#f0cf76'}>
