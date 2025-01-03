@@ -4,6 +4,12 @@
   margin: 0
   padding: 0
   box-sizing: border-box
+
+form,
+form * 
+  all: unset
+  box-sizing: border-box
+
 body
   font-family: sans-serif
   line-height: 1.5
@@ -66,6 +72,8 @@ img
     padding: 50px
     position: fixed
     z-index: 4
+    top: 0
+    left: 0
   &-wrapper
     display: flex
     padding: 50px
@@ -86,16 +94,17 @@ nav
     transform: translateY(50%)
     height: 50vh
     li
-      margin-bottom: 15px
+      margin-bottom: 50px
+      display: flex
+      align-items: center
+      position: relative
       .nav-link
         color: black
         font-family: Playfair Display
         font-weight: 600
         font-size: 50px
         transition: all .5s ease
-      .nav-link:hover
-        -webkit-text-stroke: 2px black
-        color: #fff
+        white-space: nowrap
     li::after
       content: ""
       background-image: url('./star-3.svg')
@@ -104,28 +113,41 @@ nav
       position: relative
       width: 50px
       height: 50px
-      top: -60px
-      left: 0
+      margin-left: 20px
       transition: all .5s ease
-    li:nth-child(1)::after
-      left: 310px
-    li:nth-child(2)::after
-      left: 170px
-    li:nth-child(3)::after
-      left: 200px
-      top: -62px
-    li:hover::after
-      opacity: 1
-      -webkit-text-stroke: 2px black
-      color: #fff
-
+    li:hover
+      &::after
+        opacity: 1
+        -webkit-text-stroke: 2px black
+        color: #fff
+  .social
+    &-media
+      display: flex
+      justify-content: flex-start
+      align-items: flex-start
+    &-link
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 10px,
+      width: 90px
+      height: 90px
+      border-radius: 50%
+      text-decoration: none,
+      transition: background-color 0.3s ease,
+      &:first-child
+        margin-right: 30px
+      .fa-brands
+        font-size: 25px
   .products-block
-    width: 1180px
+    max-width: 1180px
+    width: 100%
     display: flex
     flex-wrap: wrap
     border: none
     height: 100vh
     overflow: auto
+    justify-content: flex-end
     &::-webkit-scrollbar
       width: 10px
     &::-webkit-scrollbar-thumb
@@ -152,18 +174,56 @@ nav
           opacity: 1
   &.active
     left: 0
-.marquee-bg
-  z-index: 1
-  width: 100%
-  height: 100%
-  opacity: 0
-  position: absolute
-  transition: all .5s ease
-
-.cards-img
+.marquee
+  position: relative
+  display: flex
+  overflow: hidden
+  user-select: none
+  margin-bottom: 20px
+  transform: skewY(-10deg)
+  transition: all .8s ease
+  &-content
+    flex-shrink: 0
+    display: flex
+    min-width: 100%
+    animation: scroll 40s linear infinite
+    &.white
+      animation: scroll-backwards 40s linear infinite
+    p
+      font-size: 100px
+      font-weight: 700
+      font-family: Merriweather, serif
+      -webkit-text-stroke: 2px black
+      color: rgba(0, 0, 0, 0)
+      text-transform: uppercase
+  .white > p
+    color: grey
+    -webkit-text-stroke: unset
+  &-bg
+    z-index: 1
+    width: 100%
+    height: 100%
+    opacity: 0
+    position: absolute
+    transition: all .5s ease
+.card-img
   height: 350px
   width: 250px
   z-index: 2
+
+@keyframes scroll
+  from
+    transform: translateX(0)
+
+  to
+    transform: translateX(-100%)
+
+@keyframes scroll-backwards
+  from
+    transform: translateX(-100%)
+
+  to
+    transform: translateX(0)
 .main-button
   display: flex
   justify-content: center
@@ -252,7 +312,7 @@ nav
       color: #333
       text-align: center
       min-height: fit-content
-  .verticalMarquee
+  &-wrapper
     display: flex
     flex-direction: column
     justify-content: center
@@ -262,8 +322,7 @@ nav
     user-select: none
     margin-bottom: 20px
     flex-shrink: 0
-
-    &-block
+    &-item
       border: 2px solid black
       width: 300px
       height: 380px
@@ -273,23 +332,12 @@ nav
       border-radius: 50% / 30%
       min-width: 100%
       overflow: hidden
-
 @keyframes verticalScroll
   from
     transform: translateY(0)
 
   to
     transform: translateY(-100%)
-
-.footer
-  flex: 0 0 auto
-  display: flex
-  justify-content: center
-  align-items: center
-  padding: 30px 80px
-  background-color: grey
-  z-index: 3
-  margin-top: 150px
 
 .scroll-down-container
   margin: auto
@@ -313,47 +361,6 @@ nav
     font-size: 35px
     color: white
 
-.marquee
-  position: relative
-  display: flex
-  overflow: hidden
-  user-select: none
-  margin-bottom: 20px
-  transform: skewY(-10deg)
-  transition: all .8s ease
-  &-content
-    flex-shrink: 0
-    display: flex
-    min-width: 100%
-    animation: scroll 40s linear infinite
-    &.white
-      animation: scroll-backwards 40s linear infinite
-    p
-      font-size: 100px
-      font-weight: 700
-      font-family: Merriweather, serif
-      -webkit-text-stroke: 2px black
-      color: rgba(0, 0, 0, 0)
-      text-transform: uppercase
-
-  .white > p
-    color: grey
-    -webkit-text-stroke: unset
-
-@keyframes scroll
-  from
-    transform: translateX(0)
-
-  to
-    transform: translateX(-100%)
-
-@keyframes scroll-backwards
-  from
-    transform: translateX(-100%)
-
-  to
-    transform: translateX(0)
-
 @keyframes rotateText
   from
     transform: rotate(0deg)
@@ -361,102 +368,114 @@ nav
   to
     transform: rotate(360deg)
 
-.swiper-slide
-  text-align: center
-  font-size: 18px
-  display: flex
-  justify-content: center
-  align-items: center
-  overflow: hidden
-.swiper-button-prev::after,
-.swiper-button-next::after
-  color: black
-  width: 20px !important
-  --swiper-navigation-size: 30px
-
-.swiper-button-prev,
-.swiper-button-next
-  background-color: #fff
-  width: 80px !important
-  height: 80px !important
-  border-radius: 50%
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover
-  background-color: black
-
-.swiper-button-prev:hover::after,
-.swiper-button-next:hover::after
-  color: #fff
-.swiper-pagination-bullet-active
-  --swiper-theme-color: #ffffffec
-  --swiper-pagination-bullet-size: 30px
-.swiper-pagination
-  display: flex
-  justify-content: center
-  align-items: center
+.home-coctails-slider
+  position: relative
+  transition: all .3s ease
+  .mySwiper
+    z-index: 2
+  &-marquee
+    position: absolute
+    top: 20%
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 1
+    .marquee-bg
+      opacity: 1
+      p
+        font-size: 200px
 .swiper
   margin-left: auto
   margin-right: auto
   overflow: auto
-.swiper-slide p,
-.swiper-slide ul
-  transform: translateY(150px)
-  opacity: 0
-.swiper-slide  img
-  width: 40%,
-  height: 40%,
-  margin-bottom: 10px
-  object-fit: contain
-  transition: all .3s ease
-.swiper-slide-active  img
-  transform: scale(2)
-.swiper-slide-active p,
-.swiper-slide-active ul
-  opacity: 1
-.social-media
-  display: flex
-  justify-content: flex-start
-  align-items: flex-start
-
-.social-link
-  display: flex
-  justify-content: center
-  align-items: center
-  padding: 10px,
-  width: 90px
-  height: 90px
-  border-radius: 50%
-  text-decoration: none,
-  transition: background-color 0.3s ease,
-  &:first-child
-    margin-right: 30px
-  .fa-brands
-    font-size: 44px
+  &-slide
+    text-align: center
+    font-size: 18px
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    img
+      width: 40%,
+      height: 40%,
+      margin-bottom: 10px
+      object-fit: contain
+      transition: all .3s ease
+    p
+      font-size: 40px
+      margin-bottom: 20px
+    ul
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 20px
+      flex-wrap: wrap
+    p,
+    ul
+      transform: translateY(150px)
+      opacity: 0
+    &-active
+      img
+        transform: scale(2)
+      p,
+      ul
+        opacity: 1
+  &-pagination
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 15px
+    &-bullet
+      background: #ffffffbe !important
+      width: 13px !important
+      height: 13px !important
+      &-active
+        background: #ffffffdd !important
+        width: 24px !important
+        height: 24px !important
+        border-radius: 50%
+  &-button
+    &-prev,
+    &-next
+      background-color: #fff
+      width: 80px !important
+      height: 80px !important
+      border-radius: 50%
+      &:hover
+        background-color: black
+        &::after
+          color: #fff
+      &::after
+        color: black
+        width: 20px !important
+        font-size: 30px !important
 
 .swiper-wrapper-custom
   overflow: visible
   margin-left: auto
   width: 90%
+  transition: all .3 ease
   .swiper
     margin-top: 150px
     overflow: visible
+    margin-right: 20px
     &-pagination
       opacity: 0
-    .swiper-slide
+    &-slide
       width: 350px
-      border-radius: 5%
+      border-radius: 25px
       height: 670px
       display: flex
       flex-direction: column
       align-items: center
       justify-content: center
-      .marquee-bg
-        opacity: 1
-        z-index: -1
-        top: 10%
-      .marquee-bg  p
-        font-size: 150px
+      &:hover
+        .marquee-bg
+          opacity: 1
+          z-index: -1
+          top: 10%
+        .marquee-bg  p
+          font-size: 150px
       img
         width: 70%
         height: 70%
@@ -478,33 +497,32 @@ nav
           display: flex
           margin-left: 10px
           text-transform: uppercase
-
-    .swiper-scrollbar
+    .swiper-scrollbar-horizontal
       width: 60%
       bottom: -65px
       left: 10%
-    .swiper-button-prev,
-    .swiper-button-next
-      border: 1px solid #6e6d6dbd
-      width: 60px !important
-      height: 60px !important
-      top: 108%
-    .swiper-button-prev::after,
-    .swiper-button-next::after
-      width: 15px !important
-      --swiper-navigation-size: 22px
-      color: #6e6d6dbd
-    .swiper-button-next::after
-      position: relative
-      left: 3px
-    .swiper-button-prev:hover::after,
-    .swiper-button-next:hover::after
-      color: #fff
-    .swiper-button-prev
-      left: unset
-      right: 215px
-    .swiper-button-next
-      right: 130px
+    &-button
+      &-prev
+        left: unset
+        right: 215px
+      &-next
+        right: 130px
+        &::after
+          position: relative
+          left: 3px
+      &-prev,
+      &-next
+        border: 1px solid #6e6d6dbd
+        width: 60px !important
+        height: 60px !important
+        top: 108%
+        &::after
+          width: 15px !important
+          font-size: 22px !important
+          color: #6e6d6dbd
+        &:hover
+          &::after
+            color: #fff
 .form
   display: flex
   flex-direction: column
@@ -512,28 +530,60 @@ nav
   align-items: center
   height: 80vh
   gap: 20px
-  width: 100%
+  width: 800px
+  margin: auto
+  margin-top: 100px
+  &-title 
+    font-size: 40px
+    color: rgba(11, 83, 54, 0.998)
+    font-weight: 900
+    margin-bottom: 20px
+    font-family: Playfair Display, serif
   &-row
     display: flex
     justify-content: space-between
     align-items: flex-start
     gap: 20px
+    width: 100%
   &-group
     display: flex
     flex-direction: column
     justify-content: flex-start
     align-items: flex-start
     gap: 10px
-
+    width: 100%
   &-input
     padding: 10px
-    border-radius: 20px
-    width: 400px
     height: 65px
-
+    width: 100%
+    border-bottom: 2px solid rgba(11, 83, 54, 0.998)
+  &-label
+    color: rgba(11, 83, 54, 0.998)
+    font-family: Playfair Display, serif
+    font-size: 15px
   &-textarea
-    height: 100px
+    height: 130px
     border-radius: 20px
-    width: 820px
+    width: 100%
+    border: 2px solid rgba(11, 83, 54, 0.998)
+    padding: 10px
+    margin-top: 25px
+  &-input,
+  &-textarea
+    &::placeholder
+      color: rgba(11, 83, 54, 0.453)
+      font-family: Playfair Display, serif
   &-button
     transform: skewY(10deg)
+    .main-button
+      background-color: rgba(11, 83, 54, 0.998)
+
+.footer
+  flex: 0 0 auto
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 30px 80px
+  background-color: grey
+  z-index: 3
+  margin-top: 150px

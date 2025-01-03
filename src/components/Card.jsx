@@ -11,7 +11,7 @@ export default function Card({ to, onClick, backgroundColor, img, title }) {
       <div className="marquee-bg">
         <Marquee  title={title}/>
       </div>
-      <img className="cards-img" src={img} alt={title} />
+      <img className="card-img" src={img} alt={title} />
     </Link>
   );
 }

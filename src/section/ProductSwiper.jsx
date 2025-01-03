@@ -30,8 +30,6 @@ export default function ProductSwiper() {
             <div className='marquee-bg'>
               <Marquee title={cocktail.title} />
             </div>
-
-
             <p style={{ fontSize: '32px', fontWeight: 'bold' }}>{cocktail.title}</p>
             <ul>
               {Object.entries(cocktail.ingredients).map(([key, value]) => (

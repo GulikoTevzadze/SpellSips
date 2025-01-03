@@ -4,6 +4,7 @@ export default function Contact() {
   return (
     <>
       <form className="form">
+        <h2 className="form-title">CONTACT</h2>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="firstName" className="form-label">First Name</label>

@@ -11,7 +11,7 @@ export default function Navigation() {
   return (< div className='navigation-menu'>
     <div className='navigation'>
       <h1 className={`${isMenuOpen ? `black` : `white`} logo`}>
-        <Link className='nav-link' to="/" onClick={toggleMenuHandler}>Spell Sips</Link>
+        <Link className='nav-link' to="/">Spell Sips</Link>
       </h1>
       {!isMenuOpen ? (
         <button className="burger " onClick={toggleMenuHandler}>

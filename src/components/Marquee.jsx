@@ -1,4 +1,4 @@
-export default function Marquee({ title, }) {
+export default function Marquee({ title }) {
   const wordsCount = Math.round(100 / title.length)
   const renderContent = (count, className = "") =>
     Array.from({ length: count }, (_, i) => (
@@ -8,7 +8,6 @@ export default function Marquee({ title, }) {
         ))}
       </div>
     ));
-
   return (
     <div className="marquee-bg ">
       <div className="marquee">{renderContent(2)}</div>
